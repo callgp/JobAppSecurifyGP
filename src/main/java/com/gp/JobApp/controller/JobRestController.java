@@ -21,42 +21,64 @@ public class JobRestController {
     @Autowired
     private JobService service;
 
-    @GetMapping("/jobPosts")
+
+
+
+    @GetMapping("jobPosts")
     public List<JobPost> getAllJobs() {
         return service.getAllJobs();
+
     }
+
+
+
+
 
     @GetMapping("/jobPost/{postId}")
     public JobPost getJob(@PathVariable int postId) {
         return service.getJob(postId);
     }
 
-    @GetMapping("/jobPosts/keyword/{keyword}")
+
+    @GetMapping("jobPosts/keyword/{keyword}")
     public List<JobPost> searchByKeyword(@PathVariable("keyword") String keyword){
         return service.search(keyword);
+
     }
 
-    @PostMapping("/jobPost")
+
+
+
+    @PostMapping("jobPost")
     public JobPost addJob(@RequestBody JobPost jobPost) {
         service.addJob(jobPost);
         return service.getJob(jobPost.getPostId());
     }
 
-    @PutMapping("/jobPost")
+
+
+    @PutMapping("jobPost")
     public JobPost updateJob(@RequestBody JobPost jobPost) {
         service.updateJob(jobPost);
         return service.getJob(jobPost.getPostId());
     }
 
-    @DeleteMapping("/jobPost/{postId}")
-    public String deleteJob(@PathVariable int postId) {
+
+
+
+    @DeleteMapping("jobPost/{postId}")
+    public String deleteJob(@PathVariable int postId)
+    {
         service.deleteJob(postId);
         return "Deleted";
     }
 
-    @GetMapping("/load")
+
+    @GetMapping("load")
     public String loadData() {
         service.load();
         return "success";
     }
+
+
 }
